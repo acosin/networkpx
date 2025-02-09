@@ -266,8 +266,14 @@ int main (int argc, char* argv[]) {
 							if (mkdir(output_directory, 0755) == -1) {
 								perror("Cannot create directory for header generation. ");
 								return 1;
-							} else
-								chdir(output_directory);
+							} else{
+								int ret = chdir(output_directory);
+								if(ret == -1)
+								{
+									perror("Cannot change directory for header generation. ");
+									return 1;
+								}
+							}
 						}
 					}
 					
